@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template to start EC2 instance from image containing kafka and other tools with an EIP and a proper security group"
+Resources:
+  HandsOnEC2Instance:
+      Type: "AWS::EC2::Instance"
+      Properties:
+          ImageId: "ami-4a6e6529"
+          KeyName: "NIG-NPA-kafka-pilot"
+          InstanceType: t2.small
+          SecurityGroupIds:
+          - !Ref HandsOnSecurityGroup
+  HandsOnSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: "Security group opened to all ips for the hands-on duration"
+      SecurityGroupEgress:
+        - IpProtocol: '-1'
+          FromPort: '0'
+          ToPort: '0'
+          CidrIp: 0.0.0.0/0
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '0'
+          ToPort: '65535'
+          CidrIp: 0.0.0.0/0
+      VpcId: "vpc-4f7bad2a"
+Outputs:
+  PublicIp:
+    Value: !GetAtt HandsOnEC2Instance.PublicIp
+    Description: "Public ip of the set up EC2 Instance"
