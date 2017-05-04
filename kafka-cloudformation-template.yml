@@ -1,7 +1,47 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Template to start EC2 instance from image containing kafka and other tools with an EIP and a proper security group"
 Resources:
-  HandsOnEC2Instance:
+  EC2Instance1:
+      Type: "AWS::EC2::Instance"
+      Properties:
+          ImageId: "ami-4a6e6529"
+          KeyName: "NIG-NPA-kafka-pilot"
+          InstanceType: t2.small
+          SecurityGroupIds:
+          - !Ref HandsOnSecurityGroup
+  EC2Instance2:
+      Type: "AWS::EC2::Instance"
+      Properties:
+          ImageId: "ami-4a6e6529"
+          KeyName: "NIG-NPA-kafka-pilot"
+          InstanceType: t2.small
+          SecurityGroupIds:
+          - !Ref HandsOnSecurityGroup
+  EC2Instance3:
+      Type: "AWS::EC2::Instance"
+      Properties:
+          ImageId: "ami-4a6e6529"
+          KeyName: "NIG-NPA-kafka-pilot"
+          InstanceType: t2.small
+          SecurityGroupIds:
+          - !Ref HandsOnSecurityGroup
+  EC2Instance4:
+      Type: "AWS::EC2::Instance"
+      Properties:
+          ImageId: "ami-4a6e6529"
+          KeyName: "NIG-NPA-kafka-pilot"
+          InstanceType: t2.small
+          SecurityGroupIds:
+          - !Ref HandsOnSecurityGroup
+  EC2Instance5:
+      Type: "AWS::EC2::Instance"
+      Properties:
+          ImageId: "ami-4a6e6529"
+          KeyName: "NIG-NPA-kafka-pilot"
+          InstanceType: t2.small
+          SecurityGroupIds:
+          - !Ref HandsOnSecurityGroup
+  EC2Instance6:
       Type: "AWS::EC2::Instance"
       Properties:
           ImageId: "ami-4a6e6529"
@@ -25,6 +65,21 @@ Resources:
           CidrIp: 0.0.0.0/0
       VpcId: "vpc-4f7bad2a"
 Outputs:
-  PublicIp:
-    Value: !GetAtt HandsOnEC2Instance.PublicIp
+  PublicIp1:
+    Value: !GetAtt EC2Instance1.PublicIp
+    Description: "Public ip of the set up EC2 Instance"
+  PublicIp2:
+    Value: !GetAtt EC2Instance2.PublicIp
+    Description: "Public ip of the set up EC2 Instance"
+  PublicIp3:
+    Value: !GetAtt EC2Instance3.PublicIp
+    Description: "Public ip of the set up EC2 Instance"
+  PublicIp4:
+    Value: !GetAtt EC2Instance4.PublicIp
+    Description: "Public ip of the set up EC2 Instance"
+  PublicIp5:
+    Value: !GetAtt EC2Instance5.PublicIp
+    Description: "Public ip of the set up EC2 Instance"
+  PublicIp6:
+    Value: !GetAtt EC2Instance6.PublicIp
     Description: "Public ip of the set up EC2 Instance"
